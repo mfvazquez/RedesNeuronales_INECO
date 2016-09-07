@@ -35,8 +35,16 @@ end
 
 %% EJERCICIO 2
 
+N = 100;
+p = 30;
 
+patrones = sign(randn(N, p));
+W = CrearMatrizPeso(patrones);
+resultado = MatrizHopfield82(W,patrones);
+son_iguales = isequal(s,patrones)
+error = CalcularError(patrones, resultado)
 
+%%% Para dibujar imagen imshow(reshape(p(:,1), 10, 10))
 
 % % % % Crear matriz de patrones P = sgn(randn(N,p))
 % % % % ir aumentando la cantidad de patrones hasta obtener un error mayor al de la tabla.+
