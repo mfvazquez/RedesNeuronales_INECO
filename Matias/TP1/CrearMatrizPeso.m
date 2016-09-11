@@ -13,6 +13,6 @@ function W = CrearMatrizPeso(patrones)
        W = W + patrones(:,i) * patrones(:,i)' - eye(numero_elementos);
     end
 
-    W = W./(numero_elementos^2);
+    W = W./(numero_elementos);
     
 end

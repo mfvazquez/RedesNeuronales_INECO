@@ -4,16 +4,17 @@ function salida = Hopfield82(W, entrada)
     
     continuar = true;
     salida = entrada;
-    n = 0;
     while continuar
         salida_vieja = salida;
-        for i = randperm(length(salida));
-            salida(i) = sign(W(i,:) * salida);
+        subindices = randperm(length(salida));
+        for i = 1:length(subindices);
+            salida(subindices(i)) = SignoNeuronal(W(subindices(i),:) * salida);
         end
         
         if isequal(salida_vieja, salida)
             continuar = false;
         end
     end
+%     salida = sign(W*entrada); sincronico
     
 end
