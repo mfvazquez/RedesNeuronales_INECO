@@ -73,20 +73,74 @@ N = 200;
 patrones = sign(randn(N, p));
 W_original = CrearMatrizPeso(patrones);
 
-desconexiones = [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1];
+desconexiones = 0.1:0.05:1;
+errores = zeros(length(desconexiones),1);
+vec_i = zeros(length(desconexiones),1);
 
-c = 0;
 for i = 1:length(desconexiones)
     
-    c = c+1;
     A = rand(N);
     B = A>desconexiones(i);
     W = B.*W_original;
     resultado = MatrizHopfield82(W,patrones);
     error = CalcularError(patrones, resultado);
-    errores(c) = error;
-    vec_i(c) = desconexiones(i);
+    errores(i) = error;
+    vec_i(i) = desconexiones(i);
 
 end
 
 stem(vec_i, errores)
+
+%% EJERCICIO 4
+
+patrones = ObtenerPatrones('patrones', 'bmp');
+W = CrearMatrizPeso(patrones);
+
+% PATRONES INVERTIDOS
+patrones_invertidos = patrones.*-1;
+estabilidad = EsEstable(W,patrones_invertidos);
+
+figure
+imshow(reshape(patrones_invertidos(:,1), 42, 44));
+figure
+imshow(reshape(patrones_invertidos(:,2), 42, 44));
+figure
+imshow(reshape(patrones_invertidos(:,3), 42, 44));
+
+
+if all(estabilidad) == 1
+    display 'Es estable con patrones inversos';
+else
+    display 'No es estable con patrones inversos';
+end
+
+% SUMA DE PATRONES
+
+operaciones = de2bi(0:7)*2-1;
+
+patrones_sumados = SumarColumnas(patrones);
+patrones_sumados = SignoNeuronalMatriz(patrones_sumados);
+
+estabilidad = EsEstable(W,patrones_sumados);
+if all(estabilidad) == 1
+    display 'Es estable';
+else
+    display 'No es estable';
+end
+
+figure
+imshow(reshape(patrones_sumados, 42, 44));
+
+% hacerlo con cada operacion de las filas de operaciones
+
+%% elijo una cantidad X de cambios arbitraria, y cada X cambios
+%  modifico la temperatura.
+% Esto es analogo a empezar con un material que esta caliente y que
+% va disminuyendo la temperatura, y la cantidad de pasos define la
+% velocidad a la que disminuye la temperatura.
+
+N = 100;
+% UNIDIMENCIONAL 
+dimension = 1;
+s = SignoNeuronalMatriz(randn(N, dimension));
+subindice = round(rand*N + 1);
