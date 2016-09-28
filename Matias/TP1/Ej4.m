@@ -1,21 +1,26 @@
 %% EJERCICIO 4
 
 clear all
+Width = 44;
+Height = 42;
 
 patrones = ObtenerPatrones('patrones', 'bmp');
 W = CrearMatrizPeso(patrones);
 
-% PATRONES INVERTIDOS
+%% PATRONES INVERTIDOS
 patrones_invertidos = patrones.*-1;
 estabilidad = EsEstable(W,patrones_invertidos);
 
-figure
-imshow(reshape(patrones_invertidos(:,1), 42, 44));
-figure
-imshow(reshape(patrones_invertidos(:,2), 42, 44));
-figure
-imshow(reshape(patrones_invertidos(:,3), 42, 44));
+pruebas = {patrones patrones_invertidos};
 
+for i = 1:length(pruebas)
+    p = pruebas{i};
+    [~, numero_patrones] = size(p);
+    for j = 1:numero_patrones
+        posicion = i + (j-1)*length(pruebas);
+        subplot(numero_patrones, length(pruebas),posicion), imshow(reshape(p(:,j), Height, Width))
+    end
+end
 
 if all(estabilidad) == 1
     display 'Es estable con patrones inversos';
@@ -23,21 +28,24 @@ else
     display 'No es estable con patrones inversos';
 end
 
-% SUMA DE PATRONES
+%% SUMA DE PATRONES
 
 operaciones = de2bi(0:7)*2-1;
+[N, ~] = size(patrones);
+num_operaciones = 8;
+patrones_sumados = zeros(N, num_operaciones);
 
-patrones_sumados = SumarColumnas(patrones);
-patrones_sumados = SignoNeuronalMatriz(patrones_sumados);
+for i = 1:num_operaciones
 
-estabilidad = EsEstable(W,patrones_sumados);
-if all(estabilidad) == 1
-    display 'Es estable';
-else
-    display 'No es estable';
+    patrones_sumados(:,i) = SumarColumnas(patrones, operaciones(i,:));
+    patrones_sumados = SignoNeuronalMatriz(patrones_sumados);
+
 end
 
-figure
-imshow(reshape(patrones_sumados, 42, 44));
+estabilidad = EsEstable(W,patrones_sumados);
 
-% hacerlo con cada operacion de las filas de operaciones
+if all(estabilidad) == 1
+    display 'Es estable ante suma de patrones';
+else
+    display 'No es estable ante suma de patrones';
+end
