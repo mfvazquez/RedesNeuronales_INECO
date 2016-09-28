@@ -13,7 +13,7 @@ N = 100;
 %% UNIDIMENCIONAL 
 dimension = 1;
 cambios = 20;
-Temperaturas = 5:-0.1:0;
+Temperaturas = 5:-0.2:0;
 s_original = SignoNeuronalMatriz(randn(N, dimension));
 subindices_aleatorios = randperm(N);
 M = zeros(length(Temperaturas), 1);

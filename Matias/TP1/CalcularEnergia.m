@@ -1,19 +1,19 @@
 function energia = CalcularEnergia(s)
 
     energia = 0;
-    N = length(s);
-    for i = 1:N
+    [fil, col] = size(s);
     
-        if i == 1        
-            energia = energia + s(i) * (s(end) + s(i+1));
-        elseif i == N
-            energia = energia + s(i) * (s(i-1) + s(1));
-        else
-            energia = energia + s(i) * (s(i-1) + s(i+1));
+    for i = 1:fil
+        for j = 1:col
+            
+            adyacentes = PosicionesAdyacentesBidimencional(s, i, j);
+            suma = SumarAdyacentes(s, i, j, adyacentes);
+            energia = energia + s(i,j) * suma;
+            
         end
-        
-    end
     
-    energia = energia * -1/2;
-
+    end
+        
+    energia = energia * -1;
+    
 end
