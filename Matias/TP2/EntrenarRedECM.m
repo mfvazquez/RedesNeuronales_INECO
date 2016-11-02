@@ -13,9 +13,9 @@ function [red, errores] = EntrenarRedECM(red, aprendizaje, Beta, entradas, resul
         ecm = ecm / (size(entradas,1));
         errores(iteraciones) = ecm
         iteraciones = iteraciones + 1
-        if iteraciones > 100 && ElementosIguales(errores, length(errores)-20, length(errores))
-            break;
-        end
+%         if iteraciones > 100 && ElementosIguales(errores, length(errores)-20, length(errores))
+%             break;
+%         end
     end
 
 end
