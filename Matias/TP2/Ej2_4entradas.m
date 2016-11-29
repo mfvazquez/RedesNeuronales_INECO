@@ -14,3 +14,9 @@ red = CrearRed(estructura);
 iteraciones = length(errores)
 
 plot(1:length(errores), errores);
+
+
+for i = 1:size(entradas,1)
+    
+    salida(i) = ObtenerSalida(red, entradas(i,:), Beta)
+end

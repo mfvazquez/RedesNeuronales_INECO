@@ -9,9 +9,9 @@ W = CrearMatrizPeso(patrones);
 estabilidad = EsEstable(W,patrones);
 
 if all(estabilidad) == 1
-    display 'Es estable';
+    display 'Es estable con los patrones';
 else
-    display 'No es estable';
+    display 'No es estable con los patrones';
 end
 
 patrones_ruido = AgregarRuido(patrones);

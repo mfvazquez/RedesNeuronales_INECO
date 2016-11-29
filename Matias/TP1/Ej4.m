@@ -18,7 +18,7 @@ for i = 1:length(pruebas)
     [~, numero_patrones] = size(p);
     for j = 1:numero_patrones
         posicion = i + (j-1)*length(pruebas);
-        subplot(numero_patrones, length(pruebas),posicion), imshow(reshape(p(:,j), Height, Width))
+        imshow(reshape(p(:,j), Height, Width))
     end
 end
 
@@ -39,6 +39,8 @@ for i = 1:num_operaciones
 
     patrones_sumados(:,i) = SumarColumnas(patrones, operaciones(i,:));
     patrones_sumados = SignoNeuronalMatriz(patrones_sumados);
+    figure
+    imshow(reshape(patrones_sumados(:,i), Height, Width))
 
 end
 

@@ -14,6 +14,6 @@ function energia = CalcularEnergia(s)
     
     end
         
-    energia = energia * -1;
+    energia = energia * -0.5;
     
 end

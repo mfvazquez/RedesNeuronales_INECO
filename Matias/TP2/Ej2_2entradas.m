@@ -13,7 +13,7 @@ estructura = [size(entradas, 2) 10 1];
 
 red = CrearRed(estructura);
 [red, errores] = EntrenarRedECM(red, aprendizaje, Beta, entradas, resultados, tolerancia);
-iteraciones = length(errores)
+% iteraciones = length(errores)
 
 figure(1)
 plot(1:length(errores), errores);

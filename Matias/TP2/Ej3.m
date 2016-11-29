@@ -12,11 +12,11 @@ z = linspace(-1, 1, separacion);
 entradas = combvec(x, y, z)';
 resultados = ResultadosFuncionEj3(entradas);
 
-N = 800;
-aprendizaje = 0.03;
+N = 20;
+aprendizaje = 0.01;
 Beta = 0.5;
 estructura = [size(entradas, 2) N 1];
-tolerancia = 0.005;
+tolerancia = 0.001;
 
 
 red = CrearRed(estructura);

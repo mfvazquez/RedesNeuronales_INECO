@@ -13,12 +13,27 @@ aprendizaje = 0.01;
 % con este aprendizaje chiquito la recta queda pegadita a los puntos -1,1 
 % y 1,-1 ya que apenas los supera los resultados seran correctos
 
-w = PesosPerceptronSimple(aprendizaje, x, resultados);
+[w, ecm] = PesosPerceptronSimple(aprendizaje, x, resultados);
 
 % GRAFICO LOS RESULTADOS
 
+for i = 1:size(x,1)
+    resultados_perceptron(i) = PerceptronSimple(w, x(i,:));
+end
+    
+DibujarPerceptron(w, 1);
+DibujarElementos(x, resultados_perceptron, 1);
+
+
 DibujarPerceptron(w, 1);
 DibujarElementos(x, resultados, 1);
+
+
+figure(2);
+stem(1:length(ecm), ecm);
+xlabel('iteracion');
+ylabel('ECM');
+
 
 
 %% PARA 4 dimensiones graficar el error cuadratico medio. 
@@ -36,7 +51,7 @@ resultados = ResultadosOR(entradas); % resultado
 % % %     PerceptronSimple(w, entradas(x,:))
 % % % end
 
-figure(2);
+figure(3);
 stem(1:length(ecm), ecm);
 xlabel('iteracion');
 ylabel('ECM');

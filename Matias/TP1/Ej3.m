@@ -21,6 +21,7 @@ parfor i = 1:length(desconexiones)
 
 end
 
+figure
 stem(desconexiones, errores)
 
 save('ResultadosEj3');
