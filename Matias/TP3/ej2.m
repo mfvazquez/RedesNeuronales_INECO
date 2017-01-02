@@ -2,10 +2,10 @@
 % Hay que unir con lineas los pesos de las neuronas adyacentes
 clear all;
 clc;
-N = 25; % numero de fias de neuronas
-M = N*100; % cantidad de puntos
+N = 15; % numero de fias de neuronas
+M = N*500; % cantidad de puntos
 aprendizaje = 0.01;
-sigma = N;
+sigma = N/2;
 limite = 1e-3;
 % limite = sigma - 1;
 

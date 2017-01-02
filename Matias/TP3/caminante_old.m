@@ -6,13 +6,13 @@
 clear all;
 clc;
 M = 50; % cantidad de puntos
-N = M*2; % numero de neuronas
+N = M*1.5; % numero de neuronas
 aprendizaje = 0.01;
 sigma = 0.5;
 k = sigma/10;
 limite = 5e-3;
 
-iteraciones = 100;
+iteraciones = 50;
 
 puntos = rand(M,2)*2 -1;
 
